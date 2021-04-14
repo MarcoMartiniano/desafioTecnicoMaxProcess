@@ -164,54 +164,56 @@ public class MainActivity extends AppCompatActivity {
         c.telefones = listaTelefones;
 
         //Add data cadastro
+        if(nome.equals("")){
+            Toast.makeText(this, "Preencha o nome por favor", Toast.LENGTH_LONG).show();
+            return null;
+        }else {
+            switch (uf) {
 
-        switch (uf){
-
-            //CPF Obrigatorio
-            case "SP":
-                if(!isCPF(cpf) ){
-                    Toast.makeText(this,"CPF Invalido",Toast.LENGTH_LONG).show();
-                    return null;
-                }else if (cpf.equals("")) {
-                    Toast.makeText(this,"UF: SP - CPF Obrigatório ",Toast.LENGTH_LONG).show();
-                    return null;
-                }else{
-                }
-
-            break;
-
-            //validar MG > 18 anos
-            case "MG":
-
-                if(isCPF(cpf) || cpf.equals("")){
-                    if(isMaiorde18(dataNascimento)){
-
-                    }else{
-                        Toast.makeText(this,"UF: MG - Obrigatório maior de 18 anos",Toast.LENGTH_LONG).show();
+                //CPF Obrigatorio
+                case "SP":
+                    if (!isCPF(cpf)) {
+                        Toast.makeText(this, "CPF Invalido", Toast.LENGTH_LONG).show();
                         return null;
+                    } else if (cpf.equals("")) {
+                        Toast.makeText(this, "UF: SP - CPF Obrigatório", Toast.LENGTH_LONG).show();
+                        return null;
+                    } else {
                     }
 
+                    break;
 
-                }
-                break;
+                //validar MG > 18 anos
+                case "MG":
 
-            default:
-                if(isCPF(cpf) || cpf.equals("")){
+                    if (isCPF(cpf) || cpf.equals("")) {
+                        if (isMaiorde18(dataNascimento)) {
+
+                        } else {
+                            Toast.makeText(this, "UF: MG - Obrigatório maior de 18 anos", Toast.LENGTH_LONG).show();
+                            return null;
+                        }
 
 
-                }else{
-                    Toast.makeText(this,"CPF INVÁLIDO CORRIJA OU DEIXE EM BRANCO",Toast.LENGTH_LONG).show();
-                    return null;
-                }
-                break;
+                    }
+                    break;
+
+                default:
+                    if (isCPF(cpf) || cpf.equals("")) {
+
+
+                    } else {
+                        Toast.makeText(this, "CPF INVÁLIDO CORRIJA OU DEIXE EM BRANCO", Toast.LENGTH_LONG).show();
+                        return null;
+                    }
+                    break;
+            }
+
         }
-
-
 
 
         return c;
     }
-
 
     public void Cadastrar (View view) throws ParseException {
         Clientes cliente = CadastroCliente();
@@ -227,7 +229,7 @@ public class MainActivity extends AppCompatActivity {
             novoRegistro.put(TabelaSQLHelper.dadosSQL.COL_CLIENTES_DATACADASTRO,DataHoje());
             novoRegistro.put(TabelaSQLHelper.dadosSQL.COL_CLIENTES_UF,cliente.uf);
             resolver.insert(BDContentProvider.Provider.CLIENTES_URI,novoRegistro);
-            Toast.makeText(this,"ID ultimo cliente: " + IDUltimoCliente(),Toast.LENGTH_LONG).show();
+
 
             //Salvando os Telefones
             int tamanhoLista = cliente.telefones.size();
@@ -329,11 +331,9 @@ public class MainActivity extends AppCompatActivity {
     //Pegando todos Telefones e adicionando em uma lista que será usada para ADD no Banco de Dados
     private List<String> MetodoTelefonesLista(List<LinearLayout> listLinearLayout){
         List<String> retorno = new ArrayList<>();
-        Toast.makeText(this,"Telefone lista tamanho " + listLinearLayout.size(),Toast.LENGTH_LONG).show();
         for(int i=0; i < listLinearLayout.size();i++){
             EditText edt = (EditText)listLinearLayout.get(i).getChildAt(2);
             String telefone = edt.getText().toString();
-            Toast.makeText(this,"Telefone lista: " + telefone,Toast.LENGTH_LONG).show();
             retorno.add(telefone);
         }
         return retorno;

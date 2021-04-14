@@ -179,7 +179,7 @@ public class BDContentProvider extends ContentProvider {
         public static final String uri_Telefones = uri + "/telefones";
         public static final Uri TELEFONES_URI = Uri.parse(uri_Telefones);
 
-        public static final String BD_NOME = "BDteste4";
+        public static final String BD_NOME = "BDDesafio";
         public static final int BD_VERSION =  1;
     }
 
