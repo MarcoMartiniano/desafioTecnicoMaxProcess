@@ -3,22 +3,22 @@ package com.marco.desafiotecnicomaxprocess;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.joda.time.DateTime;
+
 import org.joda.time.Period;
 import org.joda.time.PeriodType;
-import org.joda.time.format.DateTimeFormatter;
-import org.joda.time.format.ISODateTimeFormat;
-
 
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Intent;
+
 import android.database.Cursor;
+
 import android.os.Bundle;
 
 import android.text.InputType;
 
 import android.view.View;
+
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -26,17 +26,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.InputMismatchException;
 import java.util.List;
-import java.util.Locale;
+
 
 public class MainActivity extends AppCompatActivity {
 
